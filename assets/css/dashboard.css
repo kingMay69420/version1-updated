@@ -1,141 +1,196 @@
-/* Updated dashboard-specific styles */
-
-.dashboard-overview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+/* =========================
+   Dashboard – Responsive, Polished
+   ========================= */
+:root{
+  --bg:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --brand:#192f5d;
+  --brand-600:#14254a;
+  --brand-300:#8fa3cc;
+  --accent:#2563eb;
+  --success:#16a34a;
+  --info:#0ea5e9;
+  --warning:#f59e0b;
+  --danger:#dc2626;
+  --border:#e5e7eb;
+  --card:#ffffff;
+  --radius:12px;
+  --radius-sm:10px;
+  --shadow-sm:0 2px 6px rgba(17,24,39,.06);
+  --shadow:0 8px 24px rgba(17,24,39,.08);
+  --ring:#93c5fd;
 }
 
-.dashboard-card {
-    background-color: white;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+*{box-sizing:border-box}
+.coordinator-dashboard{
+  max-width:1100px;
+  margin:0 auto;
+  padding: clamp(16px,2vw,32px) clamp(12px,2vw,20px);
+  color:var(--text);
+  font: 400 16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Arial;
 }
 
-.dashboard-card h3 {
-    margin-bottom: 1rem;
-    color: #192f5d; /* Theme color */
+/* Heading */
+.coordinator-dashboard > h2{
+  margin:.25rem 0 1rem;
+  font-size: clamp(22px,2.2vw,30px);
+  letter-spacing:.2px;
+  color:var(--brand);
 }
 
-.dashboard-card .stat {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #192f5d; /* Theme color */
+/* Alerts */
+.alert{
+  border:1px solid var(--border);
+  border-left-width:6px;
+  border-radius: var(--radius-sm);
+  padding: .9rem 1rem;
+  margin: 1rem 0 1.2rem;
+  background: #f8fbff;
+  box-shadow: var(--shadow-sm);
+}
+.alert-info{ border-left-color: var(--info); }
+.alert p{ margin:0; }
+.alert a{ color: var(--accent); text-decoration:none; font-weight:600; }
+.alert a:hover{ text-decoration:underline; }
+
+/* ===== Card Buttons Row – use responsive grid ===== */
+.card-buttons-row{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
 }
 
-.dashboard-card .stat-description {
-    color: #666;
-    margin-top: 0.5rem;
+/* Card Buttons */
+.card-button{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  text-decoration:none;
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  min-height: 110px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  color: inherit;
+}
+.card-button:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+  border-color:#d8dee9;
+}
+.card-button:focus{
+  outline:none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 35%, transparent);
 }
 
-/* Filter controls styling */
-.filter-controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    align-items: center;
+/* Icon */
+.card-icon{
+  flex:0 0 56px;
+  width:56px;height:56px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background: linear-gradient(135deg, var(--brand), var(--brand-600));
+  color:#fff;
+  font-size: 1.35rem;
+  box-shadow: inset 0 0 12px rgba(255,255,255,.08);
 }
 
-.filter-controls label {
-    font-weight: 600;
-    margin-right: 0.5rem;
-    color: #192f5d; /* Theme color for labels */
+/* Text */
+.card-content h3{
+  margin:0;
+  font-weight:700;
+  color:var(--brand);
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  line-height:1.3;
+}
+.card-content p{
+  margin:.15rem 0 0;
+  color:var(--muted);
+  font-size:.92rem;
 }
 
-.filter-controls select {
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+/* Recent Reports block */
+.recent-reports{
+  margin-top: 1.6rem;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--border);
+}
+.recent-reports > h3{
+  margin: 0 0 .8rem;
+  color: var(--brand);
+  font-size: 1.1rem;
 }
 
-/* Card for creating new files */
-.file-new-card {
-    display: flex;
+/* Generic button */
+.btn{
+  background: var(--brand);
+  color:#fff;
+  border:1px solid transparent;
+  border-radius: 10px;
+  padding: .6rem 1rem;
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-weight:600;
+  text-decoration:none;
+  transition: background .2s ease, transform .02s ease, box-shadow .2s ease;
+  box-shadow: 0 1px 0 rgba(17,24,39,.04);
+}
+.btn:hover{ background: var(--brand-600); }
+.btn:active{ transform: translateY(1px); }
+.btn:focus{ outline:none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 35%, transparent); }
+
+/* Tables (if shown) */
+.coordinator-dashboard table{
+  width:100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow-sm);
+}
+.coordinator-dashboard th{
+  text-align:left;
+  background:#f7f9fc;
+  color:var(--brand);
+  padding: 12px 10px;
+  border-bottom:1px solid var(--border);
+  font-weight:700;
+  font-size:.95rem;
+  white-space:nowrap;
+}
+.coordinator-dashboard td{
+  padding: 10px;
+  border-bottom:1px solid var(--border);
+}
+.coordinator-dashboard tr:hover td{ background: #fbfdff; }
+
+/* Utilities */
+.hr-soft{ height:1px; background: var(--border); border:0; margin: 18px 0; }
+
+/* ===== Responsive tweaks ===== */
+@media (max-width: 480px){
+  .card-button{
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 200px;
-    background-color: white;
-    border: 2px dashed #192f5d; /* Theme color for border */
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.file-new-card:hover {
-    background-color: #f8f9fa;
-}
-
-.file-new-card i {
-    font-size: 3rem;
-    color: #192f5d; /* Theme color for icon */
-    margin-bottom: 1rem;
-}
-
-.file-new-card h3 {
-    color: #192f5d; /* Theme color for heading */
-    margin-bottom: 0.5rem;
-}
-
-.file-new-card p {
-    color: #666;
-}
-.quick-actions-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 2rem;
-    border: 1px solid #e9ecef;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 16px 14px;
+    min-height: 140px;
+  }
+  .card-icon{ width:52px; height:52px; font-size:1.2rem; }
+  .card-content h3{ font-size: 1rem; }
+  .card-content p{ font-size: .9rem; }
 }
 
-.quick-actions-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+@media (min-width: 481px) and (max-width: 900px){
+  .card-buttons-row{
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 
-.quick-actions-card .card-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #192f5d, #2c3e50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    font-size: 2rem;
-    color: white;
-}
-
-.quick-actions-card .card-content h3 {
-    margin: 0 0 0.5rem 0;
-    color: #192f5d;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.quick-actions-card .card-content p {
-    margin: 0 0 1.5rem 0;
-    color: #666;
-    font-size: 1rem;
-}
-
-.quick-actions-card .card-action .btn {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-.quick-actions-card .card-action .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(25, 47, 93, 0.3);
+@media (prefers-reduced-motion: reduce){
+  .card-button, .btn{ transition: none; }
 }

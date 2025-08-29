@@ -12,4 +12,6 @@ try {
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage() . "<br>Please check your MySQL server status and database credentials in includes/db.php."); // Keep the error message for debugging
 }
+
+
 ?>

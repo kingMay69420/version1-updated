@@ -5,12 +5,12 @@ redirectIfNotAdmin();
 require_once '../includes/db.php';
 
 // Get pending reports
-$stmt = $pdo->prepare("SELECT r.*, u.username FROM reports r JOIN users u ON r.coordinator_id = u.id WHERE r.status = 'pending' ORDER BY r.created_at DESC");
+$stmt = $pdo->prepare("SELECT r.*, u.username FROM community_needs_reports r JOIN users u ON r.coordinator_id = u.id WHERE r.status = 'pending' ORDER BY r.created_at DESC");
 $stmt->execute();
 $pendingReports = $stmt->fetchAll();
 
 // Get all reports
-$stmt = $pdo->prepare("SELECT r.*, u.username FROM reports r JOIN users u ON r.coordinator_id = u.id ORDER BY r.created_at DESC LIMIT 10");
+$stmt = $pdo->prepare("SELECT r.*, u.username FROM community_needs_reports r JOIN users u ON r.coordinator_id = u.id ORDER BY r.created_at DESC LIMIT 10");
 $stmt->execute();
 $allReports = $stmt->fetchAll();
 
@@ -21,18 +21,19 @@ require_once '../includes/header.php';
     <h2>Admin Dashboard</h2>
     
     <section class="pending-reports">
-        <h3>Pending Reports</h3>
+        <h3>Pending Community Needs Assessment Reports</h3>
         <?php if (empty($pendingReports)): ?>
             <p>No pending reports.</p>
         <?php else: ?>
             <div class="reports-grid">
                 <?php foreach ($pendingReports as $report): ?>
                     <div class="report-card">
-                        <h4><?php echo htmlspecialchars($report['activity_title']); ?></h4>
+                        <h4>Participant: <?php echo htmlspecialchars($report['participant_name']); ?></h4>
                         <p>From: <?php echo htmlspecialchars($report['username']); ?></p>
                         <p>Department: <?php echo htmlspecialchars($report['department']); ?></p>
-                        <p>Date: <?php echo date('M d, Y', strtotime($report['date'])); ?></p>
-                        <a href="review-report.php?id=<?php echo $report['id']; ?>" class="btn">Review</a>
+                        <p>Assessment Date: <?php echo date('M d, Y', strtotime($report['assessment_date'])); ?></p>
+                        <p>Location: <?php echo htmlspecialchars($report['location']); ?></p>
+                        <a href="review-report.php?id=<?php echo $report['id']; ?>" class="btn">Review Assessment</a>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -40,15 +41,16 @@ require_once '../includes/header.php';
     </section>
     
     <section class="all-reports">
-        <h3>Recent Reports</h3>
+        <h3>Recent Community Needs Assessment Reports</h3>
         <div class="reports-table">
             <table>
                 <thead>
                     <tr>
-                        <th>Title</th>
+                        <th>Participant</th>
                         <th>Coordinator</th>
                         <th>Department</th>
-                        <th>Date</th>
+                        <th>Assessment Date</th>
+                        <th>Location</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -56,10 +58,11 @@ require_once '../includes/header.php';
                 <tbody>
                     <?php foreach ($allReports as $report): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($report['activity_title']); ?></td>
+                            <td><?php echo htmlspecialchars($report['participant_name']); ?></td>
                             <td><?php echo htmlspecialchars($report['username']); ?></td>
                             <td><?php echo htmlspecialchars($report['department']); ?></td>
-                            <td><?php echo date('M d, Y', strtotime($report['date'])); ?></td>
+                            <td><?php echo date('M d, Y', strtotime($report['assessment_date'])); ?></td>
+                            <td><?php echo htmlspecialchars($report['location']); ?></td>
                             <td>
                                 <?php if ($report['status'] === 'approved'): ?>
                                     <span class="status-badge approved">✅ Approved</span>

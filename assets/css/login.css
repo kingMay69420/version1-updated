@@ -1,0 +1,118 @@
+/* ===== Theme Tokens (white + dark blue) ===== */
+:root{
+  --navy:#192f5d;
+  --navy-700:#14254a;
+  --ring:#93c5fd;
+
+  --bg:#ffffff;
+  --bg-soft:#f4f7fb;
+  --text:#1f2937;
+  --muted:#6b7280;
+
+  --border:#e5e7eb;
+  --shadow:0 10px 30px rgba(17,24,39,.10);
+  --shadow-sm:0 3px 10px rgba(17,24,39,.06);
+
+  --radius:14px;
+  --radius-sm:10px;
+}
+
+/* Center the login nicely on the page even if header/footer exist */
+.login-container{
+  width: min(440px, 92%);
+  margin: clamp(28px, 8vh, 64px) auto;
+  padding: 2rem 2rem 2.2rem;
+  background: var(--bg);
+  border: 1px solid rgba(25,47,93,.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+/* Top accent bar */
+.login-container::before{
+  content:"";
+  position:absolute; inset:0 0 auto 0;
+  height: 4px; background: var(--navy);
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+/* Heading */
+.login-container h2{
+  margin: 0 0 1.2rem;
+  text-align: center;
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: -.2px;
+}
+
+/* Alert (error) */
+.login-container .alert{
+  padding: .9rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #fdecec;
+  color: #8c1d1d;
+  display:flex; align-items:flex-start; gap:.6rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1rem;
+}
+.login-container .alert i{ color:#c0392b; margin-top:.15rem; }
+.login-container .alert-error{ border-left:4px solid #e74c3c; }
+
+/* Form */
+.login-container .form-group{ margin-bottom: 1rem; }
+.login-container label{
+  display:block; margin-bottom:.45rem;
+  color: var(--navy); font-weight: 600; font-size:.95rem;
+}
+.login-container input[type="text"],
+.login-container input[type="password"]{
+  width:100%;
+  padding: .9rem 1rem;
+  border:1px solid var(--border);
+  border-radius: 10px;
+  background:#f9fafc;
+  color: var(--text);
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  font-size: .98rem;
+}
+.login-container input:focus{
+  outline:none;
+  background:#fff;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 35%, transparent);
+}
+
+/* Button (scoped so it doesn’t override site-wide .btn if any) */
+.login-container .btn{
+  width:100%;
+  margin-top:.25rem;
+  padding: .9rem 1rem;
+  background: var(--navy);
+  color:#fff;
+  border:1px solid transparent;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing:.3px;
+  cursor: pointer;
+  transition: background .2s ease, transform .02s ease, box-shadow .2s ease;
+  box-shadow: 0 4px 12px rgba(25,47,93,.18);
+}
+.login-container .btn:hover{ background: var(--navy-700); }
+.login-container .btn:active{ transform: translateY(1px); }
+.login-container .btn:focus{
+  outline:none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 35%, transparent);
+}
+
+/* Subtle helper text style if you add any <small> under inputs */
+.login-container small{
+  display:block; margin-top:.4rem; color: var(--muted); font-size:.85rem;
+}
+
+/* Mobile tweaks */
+@media (max-width: 420px){
+  .login-container{ padding: 1.6rem 1.2rem; }
+  .login-container h2{ font-size: 1.25rem; }
+}

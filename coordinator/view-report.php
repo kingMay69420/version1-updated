@@ -86,7 +86,7 @@ require_once '../includes/header.php';
                 <div class="notes-content">
                     <?php echo nl2br(htmlspecialchars($report['admin_notes'])); ?>
                 </div>
-                <a href="new-report.php?edit=<?php echo $report['id']; ?>" class="btn">Resubmit Report</a>
+                <a href="/coor-report/new-report.php?edit=<?php echo $report['id']; ?>" class="btn">Resubmit Report</a>
             </div>
         <?php endif; ?>
     </div>

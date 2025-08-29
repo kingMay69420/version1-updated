@@ -3,6 +3,11 @@ require_once 'includes/config.php';
 require_once 'includes/db.php';
 require_once 'includes/auth.php';
 
+$PAGE_TITLE  = 'Login';
+$EXTRA_CSS   = ['/assets/css/login.css'];   // <- your login-only stylesheet
+$BODY_CLASS  = 'login';                      // optional: add a class to <body>
+$HIDE_CHROME = true;     
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
@@ -48,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$page_styles = ['/assets/css/login.css'];   // page-specific CSS
 require_once 'includes/header.php';
 ?>
 
