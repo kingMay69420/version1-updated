@@ -24,6 +24,7 @@ if (!$report) {
 require_once '../includes/header.php';
 ?>
 
+
 <div class="view-report">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h2>Community Needs Assessment Report</h2>

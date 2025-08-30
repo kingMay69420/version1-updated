@@ -332,3 +332,48 @@ body.login{
   }
   table{ page-break-inside: avoid; }
 }
+/* Stats */
+.stats-grid{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap:14px; margin: 6px 0 18px;
+}
+.stat-card{
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  padding:16px; box-shadow: var(--shadow-sm);
+}
+.stat-card.link{ text-decoration:none; color:inherit; display:block; }
+.stat-kpi{ font-size:28px; font-weight:800; color:var(--navy); line-height:1; }
+.stat-label{ color:var(--muted); margin-top:6px; }
+
+/* Two column section */
+.two-col{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+@media (max-width: 900px){ .two-col{ grid-template-columns:1fr; } }
+.card{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px; box-shadow: var(--shadow-sm); }
+.card-title{ font-weight:800; color:var(--navy); margin-bottom:8px; }
+
+/* Upcoming list */
+.upcoming-list{ list-style:none; padding:0; margin:0; }
+.upcoming-list li{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 0; border-bottom:1px solid var(--border);
+}
+.upcoming-list li:last-child{ border-bottom:0; }
+.u-title{ font-weight:600; }
+.u-date{ color:var(--muted); font-size:.9rem; }
+
+/* Timeline */
+.timeline{ list-style:none; padding:0; margin:0; }
+.timeline li{ padding:10px 0; border-bottom:1px solid var(--border); }
+.timeline li:last-child{ border-bottom:0; }
+.timeline .tag{
+  display:inline-block; font-size:.75rem; font-weight:700; padding:2px 8px; border-radius:999px; margin-right:8px;
+  background:#eef2ff; color:#3730a3; /* default */
+}
+.timeline .tag.community_needs_reports{ background:#e3f2fd; color:#1976d2; }
+.timeline .tag.program_designs{ background:#f3e8ff; color:#7c3aed; }
+.timeline .tag.three_year_development_plans{ background:#e8f5e9; color:#2e7d32; }
+.timeline .time{ color:var(--muted); font-size:.9rem; margin-left:6px; }
+.timeline .status{ margin-left:6px; font-size:.85rem; font-weight:700; }
+.timeline .status.s-approved{ color:#155724; }
+.timeline .status.s-rejected{ color:#721c24; }
+.timeline .status.s-pending{ color:#8a6d3b; }

@@ -71,9 +71,21 @@ if (!function_exists('isLoggedIn')) {
                     <a href="/admin/manage-coordinators.php"><i class="fas fa-users"></i> Manage Coordinators</a>
                     <a href="/admin/reports.php"><i class="fas fa-chart-bar"></i> Reports</a>
                     <a href="/admin/send-notification.php"><i class="fas fa-bell"></i> Send Notifications</a>
+                    <a href="/admin/chat.php"><i class="fas fa-comments"></i> Chat</a>
                 <?php elseif (isCoordinator()): ?>
-                    <a href="/coordinator/dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                    <a href="/coordinator/history.php"><i class="fas fa-history"></i> Report History</a>
+                    <a href="/coordinator/dashboard.php">
+                    <i class="fa-solid fa-house"></i> Home
+                    </a>
+
+                    <a href="">
+                    <i class="fa-solid fa-clipboard-list"></i> Report Management
+                    </a>
+
+                    <a href="/coordinator/history.php">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Report History
+                    </a>
+                    <a href="/coordinator/chat.php"><i class="fas fa-comments"></i> Chat</a>
+
                 <?php endif; ?>
             </div>
         <?php endif; ?>
